@@ -8,6 +8,9 @@ class Settings {
     }
 
     setupSettingsContainer () {
+        var isDown = false;
+        var offset = [0,0];
+
         let settingsContainer = document.createElement('div');
         settingsContainer.id = "settingsContainer";
         settingsContainer.style.padding = "10px";
@@ -19,7 +22,40 @@ class Settings {
         settingsContainer.style.transition = "maxheight .2s ease";
         settingsContainer.style.webkitTransition = "max-height .2s";
         settingsContainer.style.maxHeight = this.on ? "1rem" : "30rem";
+        settingsContainer.style.backgroundColor = "rgba(0.5,0.5,0.5,0.5)";
+        settingsContainer.style.borderRadius = "0.5rem";
         settingsContainer.setAttribute("max-height", this.on ? "1rem" : "30rem");
+
+        let draggableDiv = document.createElement('div');
+        draggableDiv.style.width = "100%";
+        draggableDiv.style.backgroundColor = "rgba(0.5, 0.5, 0.5, 0.5)";
+        draggableDiv.style.height = "2.5rem";
+        draggableDiv.style.position = "absolute";
+        draggableDiv.style.top = "0px";
+        draggableDiv.style.left = "0px";
+        draggableDiv.style.cursor = "grab";
+        settingsContainer.append(draggableDiv);
+
+        draggableDiv.addEventListener('mousedown', function(e) {
+            isDown = true;
+            offset = [
+                settingsContainer.offsetLeft - e.clientX,
+                settingsContainer.offsetTop - e.clientY
+            ];
+        }, true);
+
+        draggableDiv.addEventListener('mouseup', function() {
+            isDown = false;
+        }, true);
+        
+        draggableDiv.addEventListener('mousemove', function(e) {
+            e.preventDefault();
+            if (isDown) {
+                settingsContainer.style.left = (e.clientX + offset[0]) + 'px';
+                settingsContainer.style.top  = (e.clientY + offset[1]) + 'px';
+            }
+        }, true);
+
         document.body.append(settingsContainer)
 
         let span = document.createElement("span");
@@ -30,7 +66,7 @@ class Settings {
         dropdown.className = "fas fa-angle-up";
         dropdown.id = "settingsButton";
         dropdown.style.cursor = "pointer";
-        dropdown.style.marginBottom = "1rem";
+        dropdown.style.marginBottom = "1.5rem";
         dropdown.style.transform = this.on ? "rotate(180deg)" : "rotate(0deg)";
         dropdown.style.transition = "transform .2s ease";
 

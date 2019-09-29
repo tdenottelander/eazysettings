@@ -29,11 +29,15 @@ class Settings {
         let draggableDiv = document.createElement('div');
         draggableDiv.style.width = "100%";
         draggableDiv.style.backgroundColor = "rgba(0.5, 0.5, 0.5, 0.5)";
-        draggableDiv.style.height = "2.5rem";
+        draggableDiv.style.height = "1.8rem";
         draggableDiv.style.position = "absolute";
         draggableDiv.style.top = "0px";
         draggableDiv.style.left = "0px";
         draggableDiv.style.cursor = "grab";
+        draggableDiv.textContent = "Settings";
+        draggableDiv.style.paddingLeft = "2rem";
+        draggableDiv.style.paddingTop = "0.8rem";
+        draggableDiv.style.color = "white";
         settingsContainer.append(draggableDiv);
 
         draggableDiv.addEventListener('mousedown', function(e) {
@@ -48,8 +52,8 @@ class Settings {
             isDown = false;
         }, true);
         
-        draggableDiv.addEventListener('mousemove', function(e) {
-            e.preventDefault();
+        document.addEventListener('mousemove', function(e) {
+            // e.preventDefault();
             if (isDown) {
                 settingsContainer.style.left = (e.clientX + offset[0]) + 'px';
                 settingsContainer.style.top  = (e.clientY + offset[1]) + 'px';

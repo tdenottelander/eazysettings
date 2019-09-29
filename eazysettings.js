@@ -105,6 +105,22 @@ class Settings {
         this.settingsContainer.appendChild(header.element);
         return header;
     }
+
+    addCustomElement(element){
+        let div = document.createElement("div");
+        div.appendChild(element);
+        this.settingsContainer.appendChild(div);
+        return element;
+    }
+
+    addCustomElements(elements){
+        let div = document.createElement("div");
+        elements.forEach(element => {
+            div.appendChild(element);
+        });
+        this.settingsContainer.appendChild(div);
+        return elements;
+    }
 }
 
 class Slider {

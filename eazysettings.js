@@ -24,6 +24,7 @@ class Settings {
         settingsContainer.style.maxHeight = this.on ? "80rem" : "1rem";
         settingsContainer.style.backgroundColor = "rgba(0.5,0.5,0.5,0.5)";
         settingsContainer.style.borderRadius = "0.5rem";
+        settingsContainer.style.color = "white"
 
         let draggableDiv = document.createElement('div');
         draggableDiv.style.width = "100%";
@@ -86,6 +87,11 @@ class Settings {
         span.appendChild(dropdown);
 
         return settingsContainer;
+    }
+
+    setPosition(x, y){
+        this.settingsContainer.style.left = x;
+        this.settingsContainer.style.top = y;
     }
 
     addSlider(description, id, min, max, begin, step){

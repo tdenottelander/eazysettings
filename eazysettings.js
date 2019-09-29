@@ -156,6 +156,11 @@ class Slider {
     setId(id){
         this.sliderElement.id = id;
     }
+
+    setValue(value){
+        this.sliderElement.value = value;
+        this.sliderElement.dispatchEvent(new Event("input"))
+    }
 }
 
 class Checkbox{

@@ -21,7 +21,7 @@ class Settings {
         settingsContainer.style.overflowY = "hidden";
         settingsContainer.style.transition = "maxheight .2s ease";
         settingsContainer.style.webkitTransition = "max-height .2s";
-        settingsContainer.style.maxHeight = this.on ? "1rem" : "30rem";
+        settingsContainer.style.maxHeight = this.on ? "1rem" : "80rem";
         settingsContainer.style.backgroundColor = "rgba(0.5,0.5,0.5,0.5)";
         settingsContainer.style.borderRadius = "0.5rem";
         settingsContainer.setAttribute("max-height", this.on ? "1rem" : "30rem");
@@ -79,7 +79,7 @@ class Settings {
                     settingsContainer.style.maxHeight = "1rem";
                     settingsButton.style.transform = "rotate(180deg)";
                 } else {
-                    settingsContainer.style.maxHeight = "30rem";
+                    settingsContainer.style.maxHeight = "80rem";
                     settingsButton.style.transform = "rotate(0deg)";
                 }
                 this.on = !this.on;
@@ -96,9 +96,15 @@ class Settings {
     }
 
     addCheckbox(description, defaultOn, func){
-        let checkbox = new Checkbox(description, defaultOn, func)
+        let checkbox = new Checkbox(description, defaultOn, func);
         this.settingsContainer.appendChild(checkbox.groupElement);
         return checkbox;
+    }
+
+    addHeader(description){
+        let header = new Header(description);
+        this.settingsContainer.appendChild(header.element);
+        return header;
     }
 }
 
@@ -173,5 +179,19 @@ class Checkbox{
 
     value() {
         return this.checkbox.checked;
+    }
+}
+
+class Header {
+    constructor(description){
+        this.element = document.createElement("span");
+        this.element.textContent = description;
+        this.element.style.display = "block";
+        this.element.style.marginTop = "1rem";
+        this.element.style.fontWeight = "bold";
+        this.element.style.paddingBottom = "0.2rem";
+        this.element.style.marginBottom = "0.2rem";
+        this.element.style.borderBottom = "solid 0.1rem white";
+        this.element.style.textAlign = "center";
     }
 }

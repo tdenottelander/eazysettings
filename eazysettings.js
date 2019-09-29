@@ -21,10 +21,9 @@ class Settings {
         settingsContainer.style.overflowY = "hidden";
         settingsContainer.style.transition = "maxheight .2s ease";
         settingsContainer.style.webkitTransition = "max-height .2s";
-        settingsContainer.style.maxHeight = this.on ? "1rem" : "80rem";
+        settingsContainer.style.maxHeight = this.on ? "80rem" : "1rem";
         settingsContainer.style.backgroundColor = "rgba(0.5,0.5,0.5,0.5)";
         settingsContainer.style.borderRadius = "0.5rem";
-        settingsContainer.setAttribute("max-height", this.on ? "1rem" : "30rem");
 
         let draggableDiv = document.createElement('div');
         draggableDiv.style.width = "100%";
@@ -71,10 +70,11 @@ class Settings {
         dropdown.id = "settingsButton";
         dropdown.style.cursor = "pointer";
         dropdown.style.marginBottom = "1.5rem";
-        dropdown.style.transform = this.on ? "rotate(180deg)" : "rotate(0deg)";
+        dropdown.style.transform = this.on ? "rotate(0deg)" : "rotate(180deg)";
         dropdown.style.transition = "transform .2s ease";
 
         dropdown.addEventListener("click", function(e){
+            this.on = !this.on;
             if (this.on){
                     settingsContainer.style.maxHeight = "1rem";
                     settingsButton.style.transform = "rotate(180deg)";
@@ -82,7 +82,6 @@ class Settings {
                     settingsContainer.style.maxHeight = "80rem";
                     settingsButton.style.transform = "rotate(0deg)";
                 }
-                this.on = !this.on;
             })
         span.appendChild(dropdown);
 
